@@ -8,7 +8,7 @@ import json
 class Email():
     def __init__(self):
         
-        with open('config-sample.json') as json_data:
+        with open('config.json') as json_data:
             self.d = json.load(json_data)            
 
         self.EMAIL_FROM = self.d["from"]
@@ -20,7 +20,7 @@ class Email():
         msgText['From'] = self.EMAIL_FROM
         msgText['To'] = self.EMAIL_TO    
 
-        s = smtplib.SMTP('smtp.outlook.com')
+        s = smtplib.SMTP(self.d['server'])
         s.ehlo()
         s.starttls()
         s.ehlo()
