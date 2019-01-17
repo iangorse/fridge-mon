@@ -1,0 +1,7 @@
+{
+    "smtp-server": "smtp.outlook.com",
+    "username" : "username@outlook.com",
+    "password" : "app password",
+    "from" : "your-email-address@outlook.com",
+    "to" : "recipient@outlook.com"
+}
