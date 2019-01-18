@@ -2,13 +2,20 @@ import os
 import time
 import subprocess
 import polomail
+import json
 
-HOSTNAME 	= "rpi-fridge" 	# Hostname to check for uptime
+
+# Load the config file
+with open("config.json") as json_data:
+    config = json.load(json_data)
+
+DEBUG           = False                 # Print debugging information
+
+HOSTNAME 	= config["server"]	# Hostname to check for uptime
 MIN_TIME 	= 60*5  		# Minimum time before being notificed in seconds (60*5 = 5 minutes)
-DEBUG       = False         # Print debugging information
 is_down 	= False 		# flag to indicate if the current status is up or down
-send_email	= True 		    # flag to indicate when to send notification - this avoids sending too many
-start_time  = 0
+send_email	= True 		        # flag to indicate when to send notification - this avoids sending too many
+start_time      = 0
 
 # Avoid waiting 5 minutes just to test the script. If debbuging, reduce to 10 seconds
 if DEBUG:
@@ -41,7 +48,7 @@ while True:
             send_email = True
             current_time = time.time()
             elapsed = int(current_time - start_time)
-            e = polomail.Email()
+            e = polomail.Email(config)
             e.sendEmail("Fridge has come back on.\n\nIt was off for %d minutes" % (elapsed/60), "Fridge Update - On")
 
     else:
@@ -61,7 +68,7 @@ while True:
     		current_time = time.time()
     		if int(current_time - start_time) > MIN_TIME:
     			if send_email:
-    				e = polomail.Email()
+    				e = polomail.Email(config)
     				e.sendEmail("It looks like Dexter has switched the fridge off.\n\nGo and have a look", "Fridge Update - Off")		
     				send_email = False
 

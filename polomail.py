@@ -3,16 +3,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import base64
-import json
 
 class Email():
-    def __init__(self):
-        
-        with open('config.json') as json_data:
-            self.d = json.load(json_data)            
-
-        self.EMAIL_FROM = self.d["from"]
-        self.EMAIL_TO = self.d["to"]
+    def __init__(self, config):
+        self.config = config
+        self.EMAIL_FROM = self.config["from"]
+        self.EMAIL_TO = self.config["to"]
     
     def sendEmail(self, msg, subject):       
         msgText = MIMEText(msg)
@@ -20,11 +16,11 @@ class Email():
         msgText['From'] = self.EMAIL_FROM
         msgText['To'] = self.EMAIL_TO    
 
-        s = smtplib.SMTP(self.d['server'])
+        s = smtplib.SMTP(self.config['smtp-server'])
         s.ehlo()
         s.starttls()
         s.ehlo()
-        s.login(self.d["username"], self.d["password"])
+        s.login(self.config["username"], self.config["password"])
         s.sendmail(self.EMAIL_FROM, self.EMAIL_TO, msgText.as_string())
         s.quit()
 
