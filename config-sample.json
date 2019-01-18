@@ -3,5 +3,6 @@
     "username" : "username@outlook.com",
     "password" : "app password",
     "from" : "your-email-address@outlook.com",
-    "to" : "recipient@outlook.com"
+    "to" : "recipient@outlook.com",
+    "server": "fridge-rpi"
 }
