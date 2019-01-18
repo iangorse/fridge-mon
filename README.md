@@ -33,3 +33,31 @@ However, the Raspberry Pi Fridge Edition is in a pretty poor location that routi
 So the PiHole will detect when the RPI FE has lost connection, if it still down after 5 minutes *then* send myself a notification email.
 
 When the RPI FE comes back on (because I switched the extension lead back on), the Monitor sends me a "Hey, fridge is back on, it was off for x amount of minutes" email.
+
+### Installation Instructions
+Clone the repo
+`git clone https://github.com/iangorse/fridge-mon.git`
+
+Copy the sample config file
+`cp config-sample.json config.json`
+
+Edit the config.json file with your favourite editor, replace variables to meet your email settings
+`vim config.json`
+
+`smtp-server` = Email SMTP server
+`from` = The from address in email
+`to` = The To address in email (who the recipient is)
+`username` = The login name for the SMTP server
+`password` = the password for the SMTP server
+`server` = The target device to check if it's up or not
+
+Update DEBUG variable to True in fridge.py for testing purposes
+`vim fridge.py`
+
+Run and switch off target server and wait for email notification! (takes couple minutes with default settings)
+`python fridge.py`
+
+Turn DEBUG mode back off once happy and re-run `fridge.py`
+
+
+
