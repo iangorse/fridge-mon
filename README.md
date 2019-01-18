@@ -18,7 +18,7 @@ After finding out the fridge freezer was turned off for the upteenth time (and n
 The problem is, my fridge freezer is not a smart fridge freezer and has zero network capabilities.
 
 ### Technicalities
-To determine if the non-smart fridge was switched off was a very simple. All I do, is plug in a small wifi capable device into the extension lead, and when this powers off I know my little monkey has turned the extension lead off.
+To determine if the non-smart fridge was switched off was very simple. All I do, is plug in a small wifi capable device into the extension lead, and when this powers off I know my little monkey has turned the extension lead off.
 
 An old Raspberry Pi generation 2 with USB dongle was a perfect device to fit my needs.
 
