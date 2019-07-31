@@ -1,7 +1,7 @@
 # fridge-mon
 
 ### What is it?
-Simple sends me a notification email when my non-smart fridge turns off!
+Simply sends me a notification email when my non-smart fridge turns off!
 
 ### Background
 The property where I live in has a really poor power outlets. So much that the only outlet available to plug in my fridge freezer is
